@@ -33,6 +33,20 @@ describe('fs-any-api routes', () => {
     expect(res.body).toEqual(expected);
   });
 
+  it('/api/fishs posts a fish', async () => {
+    const newFish = {
+      name: 'Basses',
+      price: 100,
+      image: 'https://www.maine.gov/ifw/images/largemouth-bass600.jpg',
+      description: 'A fish that lives in the ocean',
+      category: 'freshwater',
+    };
+    const res = await request(app)
+      .post('/api/fishs')
+      .send(newFish);
+    expect(res.body).toEqual({ ...newFish, id: 7 });
+  });
+
   afterAll(() => {
     pool.end();
   });
