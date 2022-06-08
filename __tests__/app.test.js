@@ -9,8 +9,7 @@ describe('fs-any-api routes', () => {
     return setup(pool);
   });
 
-
-  it('GET /api/fishs responds an array of fishs with name and id', async () => {
+  it('/api/fishs responds an array of fishs with name and id', async () => {
     const res = await request(app).get('/api/fishs');
     const expected = fishs.map(fish => {
       return {
@@ -19,10 +18,9 @@ describe('fs-any-api routes', () => {
       };
     });
     expect(res.body).toEqual(expected);
-
   });
 
-  it('GET /api/fishs/1 responds with all detail of a fish', async () => {
+  it('/api/fishs/:id responds with all detail of a fish', async () => {
     const res = await request(app).get('/api/fishs/1');
     const expected = { 
       id: 1,
@@ -30,11 +28,9 @@ describe('fs-any-api routes', () => {
       price: 10,
       image: 'https://www.maine.gov/ifw/images/largemouth-bass600.jpg',
       description: 'A fish that lives in the ocean',
-      category: 'freshwater'
+      category: 'freshwater',
     };
-    
     expect(res.body).toEqual(expected);
-
   });
 
   afterAll(() => {
