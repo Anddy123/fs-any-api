@@ -22,6 +22,21 @@ describe('fs-any-api routes', () => {
 
   });
 
+  it('GET /api/fishs/1 responds with all detail of a fish', async () => {
+    const res = await request(app).get('/api/fishs/1');
+    const expected = { 
+      id: 1,
+      name: 'Bass',
+      price: 10,
+      image: 'https://www.maine.gov/ifw/images/largemouth-bass600.jpg',
+      description: 'A fish that lives in the ocean',
+      category: 'freshwater'
+    };
+    
+    expect(res.body).toEqual(expected);
+
+  });
+
   afterAll(() => {
     pool.end();
   });
